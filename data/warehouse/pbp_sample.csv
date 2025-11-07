@@ -1,0 +1,6 @@
+game_pk,inning,top_bottom,half_inning,at_bat_index,batter_id,pitcher_id,events,runs_scored,base_out_state_before,base_out_state_after
+1001,1,top,1T,1,543210,321654,single,0,000 0,100 0
+1001,1,bottom,1B,1,111222,654123,home_run,1,000 0,--- 0
+1001,2,top,2T,3,543211,321655,groundout,0,100 0,000 1
+1002,1,top,1T,2,987654,222333,walk,0,000 0,100 0
+1002,1,bottom,1B,1,123456,654321,double,1,000 0,020 0

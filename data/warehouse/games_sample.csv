@@ -1,0 +1,3 @@
+game_pk,date,season,home_id,away_id,venue,doubleheader_flag,day_night,temperature
+1001,2023-03-30,2023,110,111,Example Park,false,night,68
+1002,2023-04-01,2023,121,134,Sample Field,false,day,55

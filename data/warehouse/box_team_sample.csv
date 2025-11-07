@@ -1,0 +1,5 @@
+game_pk,team_id,is_home,team_result,R,H,BB,SO,HR,2B,3B,SB,CS,E,LOB
+1001,110,true,win,4,8,3,9,1,2,0,1,0,0,6
+1001,111,false,loss,2,6,2,7,0,1,0,0,1,1,7
+1002,121,true,win,5,9,4,8,1,1,0,2,0,0,5
+1002,134,false,loss,3,7,3,10,0,0,0,1,1,1,8

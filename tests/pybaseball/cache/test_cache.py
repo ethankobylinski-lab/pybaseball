@@ -237,7 +237,7 @@ def test_purge(remove: MagicMock) -> None:
         with patch('pybaseball.cache.file_utils.load_json', mock_load_json):
             cache.purge()
 
-    assert glob_mock.called_once()
+    glob_mock.assert_called_once()
     assert mock_load_json.call_count == len(glob_result)
     assert remove.call_count == len(glob_result)
 
@@ -256,6 +256,6 @@ def test_flush(remove: MagicMock) -> None:
         with patch('pybaseball.cache.file_utils.load_json', mock_load_json):
             cache.flush()
 
-    assert glob_mock.called_once()
+    glob_mock.assert_called_once()
     assert mock_load_json.call_count == len(glob_result)
     remove.assert_called_once()
