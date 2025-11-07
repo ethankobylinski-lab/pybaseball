@@ -24,7 +24,14 @@ class CacheConfig(singleton.Singleton):
         else:
             self.cache_type = CacheConfig.DEFAULT_CACHE_TYPE
 
-        file_utils.mkdir(self.cache_directory)
+    @property
+    def cache_directory(self) -> str:
+        return self._cache_directory
+
+    @cache_directory.setter
+    def cache_directory(self, directory: str) -> None:
+        self._cache_directory = directory
+        file_utils.mkdir(self._cache_directory)
 
     def enable(self, enabled: bool = True) -> None:
         self.enabled = enabled

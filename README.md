@@ -6,6 +6,46 @@ Baseball data scraping and analysis tools in python
 
 `pybaseball` is a Python package for baseball data analysis. This package scrapes Baseball Reference, Baseball Savant, and FanGraphs so you don't have to. The package retrieves statcast data, pitching stats, batting stats, division standings/team records, awards data, and more. Data is available at the individual pitch level, as well as aggregated at the season level and over custom time periods. See the [docs](https://github.com/jldbc/pybaseball/tree/master/docs) for a comprehensive list of data acquisition functions.
 
+## Win Factors Pipeline
+
+This repository now includes an end-to-end workflow for modelling MLB game
+outcomes located in the top-level `etl/`, `features/`, `models/`, and `app/`
+directories.  The pipeline consumes StatsAPI data, normalises it into canonical
+tables, computes sequencing features via DuckDB, trains calibrated models, and
+exposes insights through a Streamlit application with four flows tailored for
+coaches, players, and analysts:
+
+* **Coach & Player Briefing:** Snapshot the most impactful factors, narrative
+  talking points, and “winning recipe” combos for practice or classroom
+  sessions.
+* **Discoveries:** Auto-generated league insights, what-if combinations, and
+  contextual summaries of sequencing metrics.
+* **Optimization Lab:** Compare any metric against win probability with
+  correlation rankings, distribution breakdowns, and interaction heatmaps to
+  surface trade-offs (e.g., barrels vs. defensive miscues).
+* **Build Your Own Model:** Interactive feature selection and model training
+  using logistic regression or LightGBM with optional calibration.
+
+Start the interactive app with:
+
+```bash
+streamlit run app/main.py
+```
+
+### Modular data management
+
+* Drop new parquet or CSV snapshots (e.g., `games_2023.parquet` or
+  `games_2023.csv`) into `data/warehouse/` and the UI will list the season
+  automatically.  The `app.data.WarehouseRepository` class also exposes this
+  loader for batch pipelines.
+* Feature calculations are managed by `features.registry.FeatureRegistry`; add
+  new DuckDB views (for Statcast quality metrics, amateur data, etc.) without
+  editing the pipeline core.  Tests can materialise custom views by passing a
+  bespoke registry to `features.pipeline.build_features`.
+
+Sample canonical tables live in `data/warehouse/*_sample.csv` for quick
+exploration.
+
 ## Installation
 
 Pybaseball can be installed via pip:

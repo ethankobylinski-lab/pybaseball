@@ -31,7 +31,7 @@ def test_enable() -> None:
 def test_cache_directory_default(mkdir: MagicMock) -> None:
     config = cache.CacheConfig()
     assert config.cache_directory == cache.CacheConfig.DEFAULT_CACHE_DIR
-    assert mkdir.called_once_with(cache.CacheConfig.DEFAULT_CACHE_DIR)
+    mkdir.assert_called_once_with(parents=True, exist_ok=True)
 
 
 def test_cache_directory_set(mkdir: MagicMock) -> None:
@@ -39,7 +39,7 @@ def test_cache_directory_set(mkdir: MagicMock) -> None:
     cache.config.cache_directory = my_dir
 
     assert cache.config.cache_directory == my_dir
-    assert mkdir.called_once_with(my_dir)
+    mkdir.assert_called_once_with(parents=True, exist_ok=True)
 
 
 def test_expiration_default() -> None:

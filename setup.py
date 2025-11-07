@@ -93,6 +93,9 @@ setup(
                       'tqdm>=4.50.0',
                       'attrs>=20.3.0',
                       'curl_cffi>=0.10.0',
+                      'polars>=0.20.0',
+                      'duckdb>=0.9.0',
+                      'scikit-learn>=1.2.0',
                       ],
 
     # List additional groups of dependencies here (e.g. development
@@ -107,6 +110,7 @@ setup(
                  'pytest-xdist>=2.1.0',
                  'types-requests>=2.18.1'
                  ],
+        'app': ['streamlit>=1.31.0', 'plotly>=5.18.0'],
     },
 
     # If there are data files included in your packages that need to be

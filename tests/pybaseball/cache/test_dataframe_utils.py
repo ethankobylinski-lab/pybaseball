@@ -25,7 +25,8 @@ def test_load(monkeypatch: MonkeyPatch, cache_type: str, method: str) -> None:
 
     cache.dataframe_utils.load_df(test_filename)
 
-    assert read_mock.called_once_with(test_filename)
+    expected_kwargs = {'csv': {'index_col': 0}, 'parquet': {}}
+    read_mock.assert_called_once_with(test_filename, **expected_kwargs[cache_type])
 
 def test_load_invalid_cache_type() -> None:
     test_filename = 'test.exe'
@@ -47,7 +48,7 @@ def test_save(monkeypatch: MonkeyPatch, mock_data_1: pd.DataFrame, cache_type: s
 
     cache.dataframe_utils.save_df(mock_data_1, test_filename)
 
-    assert to_method.called_once_with(test_filename)
+    to_method.assert_called_once_with(test_filename)
 
 
 def test_save_invalid_cache_type(mock_data_1: pd.DataFrame) -> None:
